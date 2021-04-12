@@ -21,4 +21,3 @@ RUN pip install -r requirements.txt
 
 CMD ["server.py"]
 ENTRYPOINT ["python3"]
-
