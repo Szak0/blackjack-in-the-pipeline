@@ -1,0 +1,100 @@
+body {
+    background-image: url('/static/images/blackjack-banner.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
+#hit {
+    font-size: 25px;
+    border-style: none;
+    color: blanchedalmond;
+    background-image: url('/static/images/wooden.jpeg');
+    align-self: flex-end;
+    width: 15%;
+    height: 100%;
+
+}
+
+#start_again_container {
+
+    display: None;
+    align-items: center;
+    justify-content: center;
+    margin-top: 35%;
+
+}
+
+#start_again {
+    font-size: 25px;
+    border-style: none;
+    color: blanchedalmond;
+    background-image: url('/static/images/wooden.jpeg');
+    align-self: flex-end;
+    width: 15%;
+    height: 100%;
+
+}
+
+#stand {
+    font-size: 25px;
+    border-style: none;
+    color: blanchedalmond;
+    background-image: url('/static/images/wooden.jpeg');
+    align-self: flex-end;
+    width: 15%;
+    height: 100%;
+
+}
+
+#buttons {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 35%;
+
+}
+
+h1 {
+    text-align: center;
+    color: white;
+
+    font-size: 60px;
+}
+
+h3 {
+    color: white;
+
+    font-size: 30px;
+}
+
+
+.cards {
+    margin-right: 20px;
+    object-fit: cover;
+    width: 121px;
+    height: 182px;
+    background-size: 100% 100% !Important;
+}
+
+
+.cardBox {
+    display: flex;
+    flex-direction: row;
+}
+
+.game-board {
+    position: absolute;
+    top: 200px;
+    left: 600px;
+}
+
+#score-board {
+    color: white;
+    position: absolute;
+    bottom: 5%;
+    left: 5%;
+    font-weight: bold;
+    font-size: 24px;
+}
