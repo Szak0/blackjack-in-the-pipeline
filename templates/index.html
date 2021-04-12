@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Javascript Game</title>
+    <meta charset="UTF-8">
+    <!-- http://proger.i-forge.net/The_smallest_transparent_pixel/ -->
+    <link rel="icon" href="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=">
+    <script src="{{ url_for('static', filename='js/game.js') }}" defer></script>
+
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+</head>
+
+</head>
+<body>
+
+
+<div class="game">
+<div class="title">
+    <h1>Black Jack</h1>
+</div>
+    <div class="game-board">
+
+        <div class="player"></div>
+        <div class="hands"></div>
+        <h3>House Cards</h3>
+        <div class="cardBox" id="cards"></div>
+        <h3>Your Cards</h3>
+        <div class="cardBox" id="cards_2"></div>
+
+    </div>
+
+     <div id="score-board">
+        <p>House score:</p>
+        <div id="dealer-score"></div>
+         <p>Your score:</p>
+        <div id="player-score"></div>
+    </div>
+
+    <div id="buttons">
+        <button id="hit" onclick="hitButton()">HIT</button>
+        <button id="stand" onclick="standButton()">STAND</button>
+    </div>
+
+    <div class="result" id="result"></div>
+    <div id="start_again_container">
+        <button id="start_again" onClick="window.location.reload();">Start again</button>
+    </div>
+</div>
+
+</body>
+</html>
