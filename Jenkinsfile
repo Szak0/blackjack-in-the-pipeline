@@ -41,19 +41,21 @@ pipeline {
       
       steps {
 
-        stage('Build image') {
-          script {
+          script 
+          {
             app = docker.build("szak0/blackjack-docker-repo")  
           }
-        }     
-        stage('Test image') {
-          script {         
-            app.inside { 
+            
+      
+          script 
+          {         
+            app.inside 
+            { 
               sh 'echo "Tests passed"'        
             }
           }  
-        }    
-        stage('Push image') {
+          
+      
           script 
           { 
             docker.withRegistry('https://registry.hub.docker.com', 'dockerhub')   
@@ -62,7 +64,6 @@ pipeline {
                 app.push("latest")        
             }
           }
-        }
       }
     }
 
