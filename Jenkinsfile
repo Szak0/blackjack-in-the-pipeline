@@ -28,7 +28,7 @@ pipeline {
     stage('Build') {
       steps {
         script {
-        docker.build("szak0/blackjack-docker-repo")
+        docker.build("black-jack-in-the-pipeline")
         }
       }
     }
@@ -42,7 +42,7 @@ pipeline {
         script {
           docker.withRegistry("https://003235076673.dkr.ecr.eu-central-1.amazonaws.com", 'ecr:eu-central-1:003235076673')   
           { 
-            docker.image("szak0/blackjack-docker-repo").push('latest') 
+            docker.image("black-jack-in-the-pipeline").push('latest') 
           }
         }
       }
