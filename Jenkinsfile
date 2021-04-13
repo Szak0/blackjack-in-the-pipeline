@@ -38,7 +38,7 @@ pipeline {
     stage('Push to docker hub') {
       steps {
         script {
-          docker.withRegistry("003235076673.dkr.ecr.eu-central-1.amazonaws.com", 'ecr:eu-central-1:003235076673')   
+          docker.withRegistry("https://003235076673.dkr.ecr.eu-central-1.amazonaws.com", 'ecr:eu-central-1:003235076673')   
           { 
             docker.image("szak0/blackjack-docker-repo").push('latest') 
           }
