@@ -3,8 +3,9 @@ pipeline {
 
   environment {
     /*---AWS ECR Credentials---*/
+    /*---003235076673.dkr.ecr.eu-central-1.amazonaws.com/black-jack-in-the-pipeline---*/
     REGISTRY = '003235076673.dkr.ecr.eu-central-1.amazonaws.com'
-    REGISTRY_CREDENTIAL = 'd412e2ca-eaa9-4c63-a719-62692f177a6a'
+    REGISTRY_CREDENTIAL = 'arn:aws:iam::003235076673:user/mzdzsodzsi@gmail.com'
     ECR_REPOSITORY = 'black-jack-in-the-pipeline'
     ECR_REGION = 'eu-central-1'
 
@@ -21,6 +22,11 @@ pipeline {
             url: 'https://github.com/Szak0/blackjack-in-the-pipeline.git'
       }
     }
+    /*---003235076673.dkr.ecr.eu-central-1.amazonaws.com/black-jack-in-the-pipeline
+    REGISTRY = '003235076673.dkr.ecr.eu-central-1.amazonaws.com'
+    REGISTRY_CREDENTIAL = 'arn:aws:iam::003235076673:user/mzdzsodzsi@gmail.com'
+    ECR_REPOSITORY = 'black-jack-in-the-pipeline'
+    ECR_REGION = 'eu-central-1'---*/
 
     stage('Build') {
       steps {
