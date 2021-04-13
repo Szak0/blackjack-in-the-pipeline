@@ -4,7 +4,7 @@ pipeline {
   environment {
     /*---AWS ECR Credentials---*/
     REGISTRY = '003235076673.dkr.ecr.eu-central-1.amazonaws.com'
-    REGISTRY_CREDENTIAL = 'aws-jenkins'
+    REGISTRY_CREDENTIAL = '003235076673'
     ECR_REPOSITORY = 'black-jack-in-the-pipeline'
     ECR_REGION = 'eu-central-1'
 
@@ -28,7 +28,6 @@ pipeline {
           docker info
           docker build -t ${ECR_REPOSITORY}:${BUILD_NUMBER} .
           docker tag ${ECR_REPOSITORY}:${BUILD_NUMBER} ${REGISTRY}/${ECR_REPOSITORY}:${VERSION}
-          docker images
         """
       }
     }

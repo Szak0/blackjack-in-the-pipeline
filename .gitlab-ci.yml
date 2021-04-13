@@ -1,0 +1,5 @@
+buid-docker-image:
+  stage: build
+  script:
+    - docker build -t black-jack .
+
