@@ -36,6 +36,7 @@ pipeline {
     }
 
     stage('Push to docker hub') {
+      def app
       steps {
         stage('Build image') {
           app = docker.build("szak0/blackjack-docker-repo")    
