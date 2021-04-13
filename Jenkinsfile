@@ -3,14 +3,14 @@ pipeline {
 
   environment {
     /*---AWS ECR Credentials---*/
-    REGISTRY = '003235076673.dkr.ecr.eu-north-1.amazonaws.com'
+    REGISTRY = '003235076673.dkr.ecr.eu-central-1.amazonaws.com'
     REGISTRY_CREDENTIAL = 'aws-jenkins'
     ECR_REPOSITORY = 'black-jack-in-the-pipeline'
-    ECR_REGION = 'eu-north-1'
+    ECR_REGION = 'eu-central-1'
 
     /*---Docker Build configuration---*/
     VERSION = 'latest'
-    DOCKERFILE_PATH = '/home/ubuntu/artifacts/'
+    /* DOCKERFILE_PATH = '/home/ubuntu/artifacts/' */
   }
 
   stages {
@@ -25,7 +25,6 @@ pipeline {
     stage('Build') {
       steps {
         sh """
-          ls
           docker info
           docker build -t ${ECR_REPOSITORY}:${BUILD_NUMBER} .
           docker tag ${ECR_REPOSITORY}:${BUILD_NUMBER} ${REGISTRY}/${ECR_REPOSITORY}:${VERSION}
