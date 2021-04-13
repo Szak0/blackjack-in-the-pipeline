@@ -38,15 +38,9 @@ pipeline {
     stage('Push to ecr') {
       steps {
         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-key', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-          AWS("aws --version")
+          AWS("aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin 003235076673.dkr.ecr.eu-central-1.amazonaws.com")
         }
-        sh "echo PUSH ${ECR_REPOSITORY}:${BUILD_NUMBER} to AWS ECR 0000"
         
-        /*---script {
-          docker.withRegistry("https://${REGISTRY}", "ecr:${ECR_REGION}:${REGISTRY_CREDENTIAL}") {
-              docker.image("${REGISTRY}/${ECR_REPOSITORY}").push("${VERSION}")
-          }
-        }---*/
       }
     }
 
