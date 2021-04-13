@@ -27,29 +27,18 @@ pipeline {
 
     stage('Build') {
       steps {
-        script
-        {
+        script {
         docker.build("szak0/blackjack-docker-repo")
         }
-
-        /*---sh """
-          docker info
-          docker build -t $ECR_REPOSITORY:$BUILD_NUMBER .
-          docker tag $ECR_REPOSITORY:$BUILD_NUMBER $REGISTRY/$ECR_REPOSITORY:$VERSION
-        """
-        ---*/
       }
     }
 
     
       
     stage('Push to docker hub') {
-      
       steps {
-
-        script 
-        {
-          docker.withRegistry('https://registry.hub.docker.com', 'dockerhub')   
+        script {
+          docker.withRegistry("003235076673.dkr.ecr.eu-central-1.amazonaws.com", 'ecr:eu-central-1:003235076673')   
           { 
             docker.image("szak0/blackjack-docker-repo").push('latest') 
           }
