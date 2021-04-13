@@ -1,5 +1,7 @@
 FROM python:3.8-slim-buster
 
+RUN cat /etc/resolv.conf
+
 ARG DEBIAN_FRONTEND=noninteractive
 
 ENV VIRTUAL_ENV=/opt/venv
