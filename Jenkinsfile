@@ -2,20 +2,16 @@ pipeline {
   agent any
 
   environment {
-    /*---AWS ECR Credentials---*/
-    /*---003235076673.dkr.ecr.eu-central-1.amazonaws.com/black-jack-in-the-pipeline---*/
     REGISTRY = '003235076673.dkr.ecr.eu-central-1.amazonaws.com'
-    REGISTRY_CREDENTIAL = credentials('003235076673')
+    CREDENTIAL = '003235076673'
+    REGION = 'eu-central-1'
     ECR_REPOSITORY = 'black-jack-in-the-pipeline'
-    ECR_REGION = 'eu-central-1'
-
-    /*---Docker Build configuration---*/
     VERSION = 'latest'
-    /* DOCKERFILE_PATH = '/home/ubuntu/artifacts/' */
   }
 
   stages {
-    stage('Source'){
+
+    stage('Load sources') {
       steps {
         git branch: 'main',
             credentialsId: 'github',
@@ -23,24 +19,26 @@ pipeline {
       }
     }
 
-    stage('Build') {
+
+    stage('Build image') {
       steps {
         script {
-          docker.build("black-jack-in-the-pipeline")
+          docker.build("${ECR_REPOSITORY}")
         }
       }
     }
 
+
     stage('Push to ECR') {
       steps {
         script {
-          docker.withRegistry("https://003235076673.dkr.ecr.eu-central-1.amazonaws.com", 'ecr:eu-central-1:003235076673')   
-          { 
-            docker.image("black-jack-in-the-pipeline").push('latest') 
+          docker.withRegistry("https://${REGISTRY}", "ecr:${REGION}:${CREDENTIAL}") { 
+            docker.image("${ECR_REPOSITORY}").push("${VERSION}") 
           }
         }
       }
     }
+
 
     stage('Post-Deploy') {
       steps {
@@ -49,6 +47,7 @@ pipeline {
       }
     }
   }
+
 
   post {
     success {
