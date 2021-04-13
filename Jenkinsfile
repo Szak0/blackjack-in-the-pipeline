@@ -2,7 +2,7 @@
 
 pipeline {
   agent any
-  def app
+
   environment {
     /*---AWS ECR Credentials---*/
     /*---003235076673.dkr.ecr.eu-central-1.amazonaws.com/black-jack-in-the-pipeline---*/
@@ -34,28 +34,31 @@ pipeline {
         """
       }
     }
-    
-    stage('Push to docker hub') {
+    node {
+      def app
       
-      steps {
-        stage('Build image') {
-          app = docker.build("szak0/blackjack-docker-repo")    
+      stage('Push to docker hub') {
         
-        }     
-      stage('Test image') {           
-        app.inside { 
-          sh 'echo "Tests passed"'        
-          }    
-        }     
-      stage('Push image') {
-        docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') { 
+        steps {
+          stage('Build image') {
+              app = docker.build("szak0/blackjack-docker-repo")    
+            
+            }     
+          stage('Test image') {           
+            app.inside { 
+              sh 'echo "Tests passed"'        
+              }    
+            }     
+          stage('Push image') {
+            docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') { 
 
-          app.push("${BUILD_NUMBER}")            
+              app.push("${BUILD_NUMBER}")            
 
-          app.push("latest")        
+              app.push("latest")        
 
-        }    
-      }
+            }    
+          }
+        }
       }
     }
 
