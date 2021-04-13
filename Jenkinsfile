@@ -1,3 +1,5 @@
+@Library('github.com/releaseworks/jenkinslib') _
+
 pipeline {
   agent any
 
@@ -35,8 +37,12 @@ pipeline {
 
     stage('Push to ecr') {
       steps {
+        withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-key', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+          AWS("--region=eu-west-1 s3 ls")
+          AWS("sh aws --version")
+        }
         sh "echo PUSH ${ECR_REPOSITORY}:${BUILD_NUMBER} to AWS ECR 0000"
-        sh "aws --version"
+        
         /*---script {
           docker.withRegistry("https://${REGISTRY}", "ecr:${ECR_REGION}:${REGISTRY_CREDENTIAL}") {
               docker.image("${REGISTRY}/${ECR_REPOSITORY}").push("${VERSION}")
