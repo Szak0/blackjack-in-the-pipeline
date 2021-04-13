@@ -38,8 +38,8 @@ pipeline {
     stage('Push to ecr') {
       steps {
         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-key', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-          AWS("--region=eu-west-1 s3 ls")
-          AWS("sh aws --version")
+          AWS("--region=eu-central-1 s3 ls")
+          AWS("aws --version")
         }
         sh "echo PUSH ${ECR_REPOSITORY}:${BUILD_NUMBER} to AWS ECR 0000"
         
