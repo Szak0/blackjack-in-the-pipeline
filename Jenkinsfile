@@ -35,12 +35,27 @@ pipeline {
       }
     }
 
-    stage('Push to ecr') {
+    stage('Push to docker hub') {
       steps {
-        withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-key', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-          AWS("aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin 003235076673.dkr.ecr.eu-central-1.amazonaws.com")
-        }
+        stage('Build image') {
+          app = docker.build("szak0/blackjack-docker-repo")    
         
+        }     
+      stage('Test image') {           
+        app.inside { 
+          sh 'echo "Tests passed"'        
+          }    
+        }     
+      stage('Push image') {
+        docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') { 
+
+          app.push("${BUILD_NUMBER}")            
+
+          app.push("latest")        
+
+        }    
+      }
+
       }
     }
 
