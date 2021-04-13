@@ -45,19 +45,12 @@ pipeline {
           {
             app = docker.build("szak0/blackjack-docker-repo")  
           }
-            
-      
-          script 
-          {         
+                 
             app.inside 
             { 
               sh 'echo "Tests passed"'        
             }
-          }  
-          
-      
-          script 
-          { 
+           
             docker.withRegistry('https://registry.hub.docker.com', 'dockerhub')   
             { 
                 app.push("${BUILD_NUMBER}")            
