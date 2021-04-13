@@ -5,7 +5,7 @@ pipeline {
     /*---AWS ECR Credentials---*/
     /*---003235076673.dkr.ecr.eu-central-1.amazonaws.com/black-jack-in-the-pipeline---*/
     REGISTRY = '003235076673.dkr.ecr.eu-central-1.amazonaws.com'
-    REGISTRY_CREDENTIAL = Credentials('003235076673')
+    REGISTRY_CREDENTIAL = credentials('003235076673')
     ECR_REPOSITORY = 'black-jack-in-the-pipeline'
     ECR_REGION = 'eu-central-1'
 
@@ -40,7 +40,7 @@ pipeline {
 
     stage('Push to ecr') {
       steps {
-        sh "echo Deploy ${ECR_REPOSITORY}:${BUILD_NUMBER} to AWS ECR"
+        sh "echo PUSH ${ECR_REPOSITORY}:${BUILD_NUMBER} to AWS ECR 0000"
         script {
           docker.withRegistry("https://${REGISTRY}", "ecr:${ECR_REGION}:${REGISTRY_CREDENTIAL}") {
               docker.image("${REGISTRY}/${ECR_REPOSITORY}").push("${VERSION}")
