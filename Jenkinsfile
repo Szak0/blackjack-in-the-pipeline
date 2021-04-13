@@ -4,7 +4,7 @@ pipeline {
   environment {
     /*---AWS ECR Credentials---*/
     REGISTRY = '003235076673.dkr.ecr.eu-central-1.amazonaws.com'
-    REGISTRY_CREDENTIAL = '003235076673'
+    REGISTRY_CREDENTIAL = 'd412e2ca-eaa9-4c63-a719-62692f177a6a'
     ECR_REPOSITORY = 'black-jack-in-the-pipeline'
     ECR_REGION = 'eu-central-1'
 
