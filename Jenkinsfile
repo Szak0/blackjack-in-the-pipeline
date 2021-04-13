@@ -2,7 +2,7 @@
 
 pipeline {
   agent any
-
+  def app
   environment {
     /*---AWS ECR Credentials---*/
     /*---003235076673.dkr.ecr.eu-central-1.amazonaws.com/black-jack-in-the-pipeline---*/
@@ -34,9 +34,9 @@ pipeline {
         """
       }
     }
-
+    
     stage('Push to docker hub') {
-      def app
+      
       steps {
         stage('Build image') {
           app = docker.build("szak0/blackjack-docker-repo")    
@@ -56,7 +56,6 @@ pipeline {
 
         }    
       }
-
       }
     }
 
