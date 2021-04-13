@@ -22,18 +22,13 @@ pipeline {
             url: 'https://github.com/Szak0/blackjack-in-the-pipeline.git'
       }
     }
-    /*---003235076673.dkr.ecr.eu-central-1.amazonaws.com/black-jack-in-the-pipeline
-    REGISTRY = '003235076673.dkr.ecr.eu-central-1.amazonaws.com'
-    REGISTRY_CREDENTIAL = 'arn:aws:iam::003235076673:user/mzdzsodzsi@gmail.com'
-    ECR_REPOSITORY = 'black-jack-in-the-pipeline'
-    ECR_REGION = 'eu-central-1'---*/
 
     stage('Build') {
       steps {
         sh """
           docker info
-          docker build -t ${ECR_REPOSITORY}:${BUILD_NUMBER} .
-          docker tag ${ECR_REPOSITORY}:${BUILD_NUMBER} ${REGISTRY}/${ECR_REPOSITORY}:${VERSION}
+          docker build -t $ECR_REPOSITORY:$BUILD_NUMBER .
+          docker tag $ECR_REPOSITORY:$BUILD_NUMBER $REGISTRY/$ECR_REPOSITORY:$VERSION
         """
       }
     }
@@ -41,11 +36,12 @@ pipeline {
     stage('Push to ecr') {
       steps {
         sh "echo PUSH ${ECR_REPOSITORY}:${BUILD_NUMBER} to AWS ECR 0000"
-        script {
+        sh "aws --version"
+        /*---script {
           docker.withRegistry("https://${REGISTRY}", "ecr:${ECR_REGION}:${REGISTRY_CREDENTIAL}") {
               docker.image("${REGISTRY}/${ECR_REPOSITORY}").push("${VERSION}")
           }
-        }
+        }---*/
       }
     }
 
