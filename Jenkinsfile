@@ -28,17 +28,13 @@ pipeline {
     stage('Build') {
       steps {
         script {
-        docker.build("black-jack-in-the-pipeline")
+          docker.build("black-jack-in-the-pipeline")
         }
       }
     }
 
-    
-      
-    stage('Push to docker hub') {
+    stage('Push to ECR') {
       steps {
-        sh 'rm  ~/.dockercfg || true'
-        sh 'rm ~/.docker/config.json || true'
         script {
           docker.withRegistry("https://003235076673.dkr.ecr.eu-central-1.amazonaws.com", 'ecr:eu-central-1:003235076673')   
           { 
