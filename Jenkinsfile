@@ -34,32 +34,35 @@ pipeline {
         """
       }
     }
-    node {
-      def app
+
+    
       
-      stage('Push to docker hub') {
-        
-        steps {
-          stage('Build image') {
-              app = docker.build("szak0/blackjack-docker-repo")    
-            
-            }     
-          stage('Test image') {           
+    stage('Push to docker hub') {
+      
+      steps {
+
+        stage('Build image') {
+          script {
+            app = docker.build("szak0/blackjack-docker-repo")  
+          }
+        }     
+        stage('Test image') {
+          script {         
             app.inside { 
               sh 'echo "Tests passed"'        
-              }    
-            }     
-          stage('Push image') {
-            docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') { 
-
-              app.push("${BUILD_NUMBER}")            
-
-              app.push("latest")        
-
-            }    
+            }
+          }  
+        }    
+        stage('Push image') {
+          script 
+          { 
+            docker.withRegistry('https://registry.hub.docker.com', 'dockerhub')   
+            { 
+                app.push("${BUILD_NUMBER}")            
+                app.push("latest")        
+            }
           }
         }
-      }
     }
 
     stage('Post-Deploy') {
