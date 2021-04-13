@@ -33,7 +33,7 @@ pipeline {
       steps {
         script {
           docker.withRegistry("https://${REGISTRY}", "ecr:${REGION}:${CREDENTIAL}") { 
-            docker.image("${ECR_REPOSITORY}").push("${VERSION}") 
+            docker.image("${ECR_REPOSITORY}").push("${VERSION}-${BUILD_NUMBER}") 
           }
         }
       }
