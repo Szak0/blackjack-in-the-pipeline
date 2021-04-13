@@ -5,7 +5,7 @@ pipeline {
     /*---AWS ECR Credentials---*/
     /*---003235076673.dkr.ecr.eu-central-1.amazonaws.com/black-jack-in-the-pipeline---*/
     REGISTRY = '003235076673.dkr.ecr.eu-central-1.amazonaws.com'
-    REGISTRY_CREDENTIAL = 'arn:aws:iam::003235076673:user/mzdzsodzsi@gmail.com'
+    REGISTRY_CREDENTIAL = Credentials('003235076673')
     ECR_REPOSITORY = 'black-jack-in-the-pipeline'
     ECR_REGION = 'eu-central-1'
 
@@ -38,7 +38,7 @@ pipeline {
       }
     }
 
-    stage('Deploy') {
+    stage('Push to ecr') {
       steps {
         sh "echo Deploy ${ECR_REPOSITORY}:${BUILD_NUMBER} to AWS ECR"
         script {
