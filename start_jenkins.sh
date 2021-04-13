@@ -7,4 +7,5 @@ docker run \
   -v jenkins-data:/var/jenkins_home \
   -v jenkins-docker-certs:/certs/client:ro \
   -v /var/run/docker.sock:/var/run/docker.sock \
+  --env-file .env \
   myjenkins-blueocean:1.1 
