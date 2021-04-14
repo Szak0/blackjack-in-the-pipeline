@@ -49,10 +49,8 @@ pipeline {
 
     stage("Deploy to cluster") {
       steps {
-        sh "
-        kubectl config set-context arn:aws:eks:eu-central-1:003235076673:cluster/server-1
-        kubectl apply -f deployment/black-jack-app-deployment.yaml
-        "
+        sh "kubectl config set-context arn:aws:eks:eu-central-1:003235076673:cluster/server-1"
+        sh "kubectl apply -f deployment/black-jack-app-deployment.yaml"
       }
     }
 
