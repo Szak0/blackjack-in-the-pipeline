@@ -1,4 +1,6 @@
-docker run \
+sudo docker build -t myjenkins-blueocean:1.1 .
+
+sudo docker run \
   --name jenkins-blueocean \
   --rm \
   --detach \
@@ -9,3 +11,6 @@ docker run \
   -v /var/run/docker.sock:/var/run/docker.sock \
   --env-file .env \
   myjenkins-blueocean:1.1 
+
+sudo docker exec -it -u root jenkins-blueocean chown jenkins /var/run/docker.sock
+
