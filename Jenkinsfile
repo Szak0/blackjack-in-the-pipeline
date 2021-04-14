@@ -39,13 +39,13 @@ pipeline {
       }
     }
 
-/*
+
     stage("Create cluster") {
       steps {
         sh "aws --version"
       }
     }
-*/
+
 
     stage("Deploy to cluster") {
       steps {
