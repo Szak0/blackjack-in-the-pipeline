@@ -42,7 +42,7 @@ pipeline {
 
     stage("Create cluster") {
       steps {
-        sh "eksctl --version"
+        sh "aws --version"
       }
     }
 
