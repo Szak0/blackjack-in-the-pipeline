@@ -44,7 +44,7 @@ pipeline {
       steps {
         sh "ls"
         sh "aws --version"
-        sh "kubectl version --short --client"
+        sh "#!/bin/bash kubectl version --short --client"
       }
     }
 
