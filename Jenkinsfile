@@ -44,9 +44,10 @@ pipeline {
 
     stage("Check") {
       steps {
-        sh "ls"
+        sh "cat deployment/black-jack-app-deployment.yaml"
         sh "aws --version"
         sh "kubectl version --short --client"
+        sh "eksctl version"
       }
     }
 
