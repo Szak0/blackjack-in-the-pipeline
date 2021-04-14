@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: black-jack-app
-        image: 003235076673.dkr.ecr.eu-central-1.amazonaws.com/black-jack-in-the-pipeline:$BUILD_NUMBER
+        image: 003235076673.dkr.ecr.eu-central-1.amazonaws.com/black-jack-in-the-pipeline:latest
         ports:
         - containerPort: 6402
 
