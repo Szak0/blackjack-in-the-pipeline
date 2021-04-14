@@ -40,6 +40,13 @@ pipeline {
     }
 
 
+    stage("Create cluster") {
+      steps {
+        sh "eksctl --version"
+      }
+    }
+
+
     stage('Post-Deploy') {
       steps {
         sh "echo Creating artifacts..."
