@@ -42,6 +42,7 @@ pipeline {
 
     stage("Create cluster") {
       steps {
+        sh "ls"
         sh "aws --version"
         sh "./kubectl version --short --client"
       }
