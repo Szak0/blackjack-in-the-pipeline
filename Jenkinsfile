@@ -39,10 +39,17 @@ pipeline {
       }
     }
 
-
+/*
     stage("Create cluster") {
       steps {
         sh "aws --version"
+      }
+    }
+*/
+
+    stage("Deploy to cluster") {
+      steps {
+        sh "kubectl apply -f deployment/black-jack-app-deployment.yaml"
       }
     }
 

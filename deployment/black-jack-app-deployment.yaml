@@ -1,0 +1,35 @@
+apiVersion: apps/1
+kind: Deployment
+metadata:
+  name: black-jack-app-deployment
+  labels:
+    app: black-jack-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: black-jack-app
+  template:
+    metadata:
+      labels:
+        app: black-jack-app
+    spec:
+      containers:
+      - name: black-jack-app
+        image: 003235076673.dkr.ecr.eu-central-1.amazonaws.com/black-jack-in-the-pipeline
+        ports:
+        - containerPort: 6402
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: black-jack-app-service
+spec:
+  selector:
+    app: black-jack-app
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 6402
+      targetPort: 6402
