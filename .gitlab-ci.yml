@@ -1,4 +1,24 @@
-test_variable:
+image: 003235076673.dkr.ecr.eu-central-1.amazonaws.com/black-jack-in-the-pipeline
+
+stages:
+  - build
+  - test
+  - run
+
+variables:
+  GITLAB_BASE_URL: "https://gitlab.com"
+
+build:
+  stage: build
+  script:
+    - ls -al
+
+test:
   stage: test
   script:
-    - echo $CI_JOB_STAGE
+    - whoami
+
+run:
+  stage: run
+  script:
+    - ls -al
