@@ -65,6 +65,7 @@ pipeline {
 
     stage("Deploy to cluster") {
       steps {
+        sh "ls -al"
         sh "aws eks --region eu-central-1 update-kubeconfig --name server-1"
         sh "kubectl config set-context arn:aws:eks:eu-central-1:003235076673:cluster/server-1"
         sh "kubectl get svc"
