@@ -44,28 +44,30 @@ pipeline {
 
     stage("Check") {
       steps {
-        sh "cat deployment/black-jack-app-deployment.yaml"
+        
         sh "aws --version"
         sh "kubectl version --short --client"
         sh "eksctl version"
+        sh "cat deployment/black-jack-app-deployment.yaml"
       }
     }
 
 
-    stage("Conf aws") {
+    stage("Config aws") {
       steps { 
         sh 'aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID'
         sh 'aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY'
         sh "aws configure set default.region eu-central-1"
-        sh "kubectl config get-contexts"
+        sh "aws sts get-caller-identity"
       }
     }
 
 
     stage("Deploy to cluster") {
       steps {
+        sh "aws eks --region eu-central-1 update-kubeconfig --name server-1"
         sh "kubectl config set-context arn:aws:eks:eu-central-1:003235076673:cluster/server-1"
-        sh "kubectl apply -f deployment/black-jack-app-deployment.yaml"
+        sh "kubectl get svc"
       }
     }
 
