@@ -1,0 +1,7 @@
+image:
+  repository: grafana/grafana
+  tag: latest
+admin:
+  existingSecret: grafana-secret
+service:
+  type: LoadBalancer

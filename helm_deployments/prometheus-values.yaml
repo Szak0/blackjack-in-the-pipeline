@@ -1,0 +1,24 @@
+alertmanager:
+  enabled: false
+kubeStateMetrics:
+  enabled: false
+nodeExporter:
+  enabled: false
+pushgateway:
+  enabled: false
+server:
+  name: prometheus-deployment
+  service:
+    type: LoadBalancer
+
+serverFiles:
+  prometheus.yml:
+    scrape_configs:
+      - job_name: prometheus
+        static_configs:
+          - targets:
+            - localhost:9090
+      - job_name: bj-app
+        static_configs:
+          - targets:
+            - black-jack-app-service:8080
