@@ -59,7 +59,6 @@ pipeline {
         sh 'aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY'
         sh "aws configure set default.region eu-central-1"
         sh "aws sts get-caller-identity"
-        
       }
     }
 
@@ -73,7 +72,7 @@ pipeline {
         sh "helm repo add prometheus-community https://prometheus-community.github.io/helm-charts"
         sh "helm repo add grafana https://grafana.github.io/helm-charts"
         sh "helm repo update"
-        sh "kubectl apply -f deployment/black-jack-app-deployment.yaml"
+        sh "kubectl apply -f ./deployment/black-jack-app-deployment.yaml"
         //sh "kubectl apply -f helm_deployments/grafana_secrets.yaml"
         //sh "helm install helm-prometheus prometheus-community/prometheus --values helm_deployments/prometheus-values.yaml"
         //sh "helm install helm-grafana grafana/grafana --values helm_deployments/grafana-values.yaml"
