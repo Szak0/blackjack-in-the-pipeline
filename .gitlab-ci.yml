@@ -1,5 +1,4 @@
-buid-docker-image:
-  stage: build
+test_variable:
+  stage: test
   script:
-    - docker build -t black-jack .
-
+    - echo $CI_JOB_STAGE
