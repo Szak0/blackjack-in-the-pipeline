@@ -70,7 +70,8 @@ pipeline {
         sh "aws eks --region eu-central-1 update-kubeconfig --name server-1"
         sh "kubectl config set-context arn:aws:eks:eu-central-1:003235076673:cluster/server-1"
         sh "kubectl get svc"
-        
+        sh "helm repo add prometheus-community https://prometheus-community.github.io/helm-charts"
+        sh "helm repo add grafana https://grafana.github.io/helm-charts"
         //sh "kubectl apply -f deployment/black-jack-app-deployment.yaml"
         sh "kubectl apply -f helm_deployments/grafana_secrets.yaml"
         sh "helm install helm-prometheus prometheus-community/prometheus --values helm_deployments/prometheus-values.yaml"
