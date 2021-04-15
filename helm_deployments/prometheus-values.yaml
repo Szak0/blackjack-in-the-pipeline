@@ -7,7 +7,7 @@ nodeExporter:
 pushgateway:
   enabled: false
 server:
-  name: prometheus-deployment
+  name: prometheus-deployment-v1
   service:
     type: LoadBalancer
 
