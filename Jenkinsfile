@@ -76,7 +76,7 @@ pipeline {
         //sh "kubectl apply -f deployment/black-jack-app-deployment.yaml"
         sh "kubectl apply -f helm_deployments/grafana_secrets.yaml"
         sh "helm install helm-prometheus prometheus-community/prometheus --values helm_deployments/prometheus-values.yaml"
-        sh "helm install helm-grafana grafana/grafana --values helm_deployments/grafana-values.yaml.yaml"
+        sh "helm install helm-grafana grafana/grafana --values helm_deployments/grafana-values.yaml"
       }
     }
 
