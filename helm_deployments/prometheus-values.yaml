@@ -21,4 +21,4 @@ serverFiles:
       - job_name: bj-app
         static_configs:
           - targets:
-            - black-jack-app-service:8080
+            - black-jack-app-service:6402
