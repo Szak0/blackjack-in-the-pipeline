@@ -7,8 +7,8 @@ pipeline {
     REGION = 'eu-central-1'
     ECR_REPOSITORY = 'black-jack-in-the-pipeline'
     VERSION = 'latest'
-    AWS_ACCESS_KEY_ID     = credentials('jenkins-aws-access-key')
-    AWS_SECRET_ACCESS_KEY = credentials('jenkins-secret-access-key')
+    AWS_ACCESS_KEY_ID     = credentials('access-key-id-b')
+    AWS_SECRET_ACCESS_KEY = credentials('secret-access-key-b')
   }
 
   stages {
