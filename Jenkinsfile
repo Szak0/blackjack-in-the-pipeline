@@ -59,6 +59,7 @@ pipeline {
         sh 'aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY'
         sh "aws configure set default.region eu-central-1"
         sh "aws sts get-caller-identity"
+        sh "helm repo update"
       }
     }
 
