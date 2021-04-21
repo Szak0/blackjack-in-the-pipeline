@@ -12,7 +12,7 @@ The infrastructure developed/practiced over 1 sprint in a small team.
 - Kubectl
 - Eksctl
 - Helm
-- python
-- bash
+- Python
+- Shell
 - Jenkins
 - GitLab
